@@ -1,0 +1,16 @@
+{
+  "name": "english-assessment",
+  "version": "2.0.0",
+  "description": "A client-side adaptive English placement test (CEFR A1-C2) in vanilla JavaScript.",
+  "type": "module",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "test": "node --test",
+    "validate": "node scripts/validate-questions.js",
+    "serve": "npx --yes serve ."
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
