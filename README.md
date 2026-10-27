@@ -4,7 +4,7 @@ An adaptive English placement test that estimates a learner's level on the CEFR 
 
 It is plain HTML, CSS and JavaScript (ES modules): no build step, no dependencies, no backend. Everything, including progress and history, stays in the browser.
 
-**[Live demo](https://vaas125.github.io/english-assessment/)**
+**[Live demo](https://arifaydin12.github.io/english-assessment/)**
 
 | Start screen | Question |
 | --- | --- |
