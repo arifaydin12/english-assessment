@@ -1,0 +1,15 @@
+[
+  { "id": "1", "type": "multiple-choice", "question": "They ___ from Spain.", "answers": ["is", "are", "am", "be"], "correct_answer": "are", "level": "A1" },
+  { "id": "2", "type": "fill-in-the-blank", "question": "What time ___ it? It's 3 o'clock.", "correct_answer": "is", "level": "A1" },
+  { "id": "3", "type": "multiple-choice", "question": "She is ___ than her brother.", "answers": ["tall", "taller", "tallest", "the tall"], "correct_answer": "taller", "level": "A2" },
+  { "id": "4", "type": "fill-in-the-blank", "question": "I didn't ___ TV last night.", "correct_answer": "watch", "level": "A2" },
+  { "id": "5", "type": "multiple-choice", "question": "Have you ever ___ to Japan?", "answers": ["be", "was", "been", "went"], "correct_answer": "been", "level": "B1" },
+  { "id": "6", "type": "fill-in-the-blank", "question": "You ___ wear a seatbelt in the car. It's the law.", "correct_answer": "must", "level": "B1" },
+  { "id": "7", "type": "multiple-choice", "question": "He's been working here ___ five years.", "answers": ["since", "for", "ago", "from"], "correct_answer": "for", "level": "B1" },
+  { "id": "8", "type": "multiple-choice", "question": "If I had known you were coming, I ___ a cake.", "answers": ["would bake", "baked", "will bake", "would have baked"], "correct_answer": "would have baked", "level": "B2" },
+  { "id": "9", "type": "fill-in-the-blank", "question": "The project was a success, ___ the lack of funding.", "correct_answer": "despite", "level": "B2" },
+  { "id": "10", "type": "multiple-choice", "question": "The instructions were so ___ that nobody could understand them.", "answers": ["convoluted", "simple", "direct", "obvious"], "correct_answer": "convoluted", "level": "C1" },
+  { "id": "11", "type": "fill-in-the-blank", "question": "Never before ___ I seen such a beautiful sunset.", "correct_answer": "have", "level": "C1" },
+  { "id": "12", "type": "multiple-choice", "question": "He's an expert at ___ complex financial data.", "answers": ["elucidating", "extrapolating", "proliferating", "exacerbating"], "correct_answer": "elucidating", "level": "C2" },
+  { "id": "13", "type": "fill-in-the-blank", "question": "The CEO's decision was met with a great deal of ___. It caused a lot of controversy.", "correct_answer": "consternation", "level": "C2" }
+]

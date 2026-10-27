@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Corporate English Assessment</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-color: #0d6efd;
+            --primary-hover: #0b5ed7;
+            --secondary-color: #6c757d;
+            --success-color: #198754;
+            --light-bg: #f8f9fa;
+            --dark-text: #212529;
+            --light-text: #ffffff;
+            --border-color: #dee2e6;
+            --shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        /* --- TEMEL YAPILANDIRMA --- */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* --- HEADER (ÜST BİLGİ) --- */
+        header {
+            background-color: var(--light-text);
+            padding: 15px 40px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        /* --- ANA İÇERİK --- */
+        main {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        .app-container {
+            background-color: var(--light-text);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            width: 100%;
+            max-width: 750px;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .app-content {
+            padding: 40px 50px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            color: var(--dark-text);
+            margin-bottom: 15px;
+        }
+
+        p {
+            font-size: 1.1rem;
+            color: var(--secondary-color);
+            line-height: 1.7;
+        }
+
+        .btn {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            border: none;
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+            margin-top: 25px;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+        }
+        
+        .hidden {
+            display: none;
+        }
+
+        /* --- TEST EKRANI --- */
+        #progress-bar-container {
+            width: 100%;
+            background-color: var(--border-color);
+            border-radius: 4px;
+            height: 8px;
+            margin-bottom: 25px;
+        }
+        #progress-bar {
+            width: 0%;
+            height: 100%;
+            background-color: var(--success-color);
+            border-radius: 4px;
+            transition: width 0.4s ease-in-out;
+        }
+        
+        #question-counter {
+            font-size: 0.9rem;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+
+        #question-text {
+            font-size: 1.4rem;
+            font-weight: 500;
+            margin-bottom: 30px;
+            min-height: 60px;
+        }
+
+        #question-body {
+            text-align: left;
+        }
+
+        /* Çoktan Seçmeli Cevaplar */
+        .answers-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+        
+        .answer-btn {
+            background-color: var(--light-text);
+            border: 2px solid var(--border-color);
+            color: var(--dark-text);
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: left;
+            width: 100%;
+        }
+        .answer-btn:hover {
+            border-color: var(--primary-color);
+        }
+        .answer-btn.selected {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            border-color: var(--primary-color);
+        }
+
+        /* Boşluk Doldurma */
+        .fill-in-blank-container {
+            display: flex;
+            gap: 10px;
+        }
+        #blank-input {
+            flex: 1;
+            padding: 14px;
+            font-size: 1rem;
+            border-radius: 8px;
+            border: 2px solid var(--border-color);
+            transition: border-color 0.2s ease;
+        }
+        #blank-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        #submit-blank-btn { margin-top: 0; }
+        
+        #feedback {
+            margin-top: 20px;
+            font-weight: 600;
+            min-height: 24px;
+        }
+        .correct { color: var(--success-color); }
+        .incorrect { color: #dc3545; }
+
+
+        /* --- SONUÇ EKRANI --- */
+        #result-level {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin: 20px 0 10px;
+        }
+
+        /* --- FOOTER (ALT BİLGİ) --- */
+        footer {
+            background-color: var(--dark-text);
+            color: #a0a0a0;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+        }
+        
+        /* --- MOBİL UYUMLULUK --- */
+        @media (min-width: 600px) {
+            .answers-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        @media (max-width: 500px) {
+            .app-content {
+                padding: 30px 25px;
+            }
+            h1 { font-size: 1.8rem; }
+            #question-text { font-size: 1.2rem; }
+            .fill-in-blank-container { flex-direction: column; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#" class="logo">Global Lingua</a>
+        </header>
+
+    <main>
+        <div class="app-container">
+            <div id="start-screen" class="app-content">
+                <h1>English Proficiency Assessment</h1>
+                <p>Determine your English level with our comprehensive test. You will face a mix of multiple-choice and fill-in-the-blank questions. Click "Start" when you are ready.</p>
+                <button id="start-btn" class="btn">Start Assessment</button>
+            </div>
+
+            <div id="loading-screen" class="app-content hidden">
+                <h1>Loading Questions...</h1>
+                <p>Please wait while we prepare your assessment.</p>
+            </div>
+
+            <div id="quiz-screen" class="app-content hidden">
+                <div id="progress-bar-container"><div id="progress-bar"></div></div>
+                <div id="question-counter"></div>
+                <div id="question-text"></div>
+                <div id="question-body"></div>
+                <div id="feedback"></div>
+                <button id="next-btn" class="btn hidden">Next Question</button>
+            </div>
+
+            <div id="result-screen" class="app-content hidden">
+                <h2>Your Assessment Result</h2>
+                <div id="result-level"></div>
+                <p id="result-description"></p>
+                <button id="restart-btn" class="btn">Take Again</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Global Lingua Inc. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // --- API SİMÜLASYONU VE VERİLER ---
+        // Gerçek bir API'den veri çeker gibi davranan fonksiyon
+        async function getQuestionsFromAPI() {
+            try {
+                // Soruları questions.json dosyasından çekiyoruz
+                const response = await fetch('questions.json');
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const data = await response.json();
+                return data;
+            } catch (error) {
+                console.error('Failed to fetch questions:', error);
+                return []; // Hata durumunda boş bir dizi döndür
+            }
+        }
+        
+        // Rastgele karıştırma fonksiyonu
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        const levelDescriptions = {
+            "A1": { title: "A1 - Beginner", description: "You can use familiar everyday expressions and basic phrases. You can introduce yourself and ask/answer basic personal questions." },
+            "A2": { title: "A2 - Elementary", description: "You can understand sentences on topics of immediate relevance. You can communicate in simple, routine tasks." },
+            "B1": { title: "B1 - Intermediate", description: "You can understand main points on familiar matters and handle most travel situations. You can produce simple connected text." },
+            "B2": { title: "B2 - Upper-Intermediate", description: "You can understand main ideas of complex text. You can interact with fluency and spontaneity with native speakers." },
+            "C1": { title: "C1 - Advanced", description: "You can understand a wide range of demanding texts and express yourself fluently and spontaneously for social, academic, and professional purposes." },
+            "C2": { title: "C2 - Proficient", description: "You have mastery of the language. You can understand virtually everything, summarize information, and express yourself with precision." }
+        };
+
+        // --- DOM ELEMENTLERİ ---
+        const startScreen = document.getElementById('start-screen');
+        const loadingScreen = document.getElementById('loading-screen');
+        const quizScreen = document.getElementById('quiz-screen');
+        const resultScreen = document.getElementById('result-screen');
+        
+        const startBtn = document.getElementById('start-btn');
+        const restartBtn = document.getElementById('restart-btn');
+        const nextBtn = document.getElementById('next-btn');
+        
+        const progressBar = document.getElementById('progress-bar');
+        const qCounter = document.getElementById('question-counter');
+        const qText = document.getElementById('question-text');
+        const qBody = document.getElementById('question-body');
+        const feedbackEl = document.getElementById('feedback');
+        
+        const resultLevelEl = document.getElementById('result-level');
+        const resultDescriptionEl = document.getElementById('result-description');
+
+        // --- DEĞİŞKENLER ---
+        let allQuestions = [];
+        let currentQuestionIndex = 0;
+        let scores = { A1: 0, A2: 0, B1: 0, B2: 0, C1: 0, C2: 0 };
+        let isAnswered = false;
+
+        // --- FONKSİYONLAR ---
+
+        async function startTest() {
+            startScreen.classList.add('hidden');
+            loadingScreen.classList.remove('hidden');
+
+            try {
+                let fetchedQuestions = await getQuestionsFromAPI();
+                allQuestions = shuffleArray(fetchedQuestions); // Soruları karıştır
+
+                // Eğer sorular boşsa hata mesajı göster
+                if (allQuestions.length === 0) {
+                    loadingScreen.innerHTML = "<h1>Error</h1><p>Could not load questions. Please check the 'questions.json' file.</p>";
+                    return;
+                }
+                
+                loadingScreen.classList.add('hidden');
+                quizScreen.classList.remove('hidden');
+                
+                currentQuestionIndex = 0;
+                scores = { A1: 0, A2: 0, B1: 0, B2: 0, C1: 0, C2: 0 };
+                isAnswered = false;
+                
+                showQuestion();
+
+            } catch (error) {
+                loadingScreen.innerHTML = "<h1>Error</h1><p>Could not load questions. Please try again later.</p>";
+            }
+        }
+
+        function showQuestion() {
+            resetState();
+            const question = allQuestions[currentQuestionIndex];
+            
+            updateProgressBar();
+            qCounter.innerText = `Question ${currentQuestionIndex + 1} of ${allQuestions.length}`;
+            qText.innerText = question.question.replace('___', '______');
+            
+            if (question.type === 'multiple-choice') {
+                displayMultipleChoice(question);
+            } else if (question.type === 'fill-in-the-blank') {
+                displayFillInBlank(question);
+            }
+        }
+
+        function displayMultipleChoice(question) {
+            const grid = document.createElement('div');
+            grid.className = 'answers-grid';
+            qBody.appendChild(grid);
+
+            // Cevapları da karıştır
+            const shuffledAnswers = shuffleArray([...question.answers]);
+
+            shuffledAnswers.forEach(answerText => {
+                const button = document.createElement('button');
+                button.innerText = answerText;
+                button.className = 'answer-btn';
+                button.addEventListener('click', () => handleAnswer(answerText === question.correct_answer, button));
+                grid.appendChild(button);
+            });
+        }
+
+        function displayFillInBlank(question) {
+            const container = document.createElement('div');
+            container.className = 'fill-in-blank-container';
+            
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.id = 'blank-input';
+            input.placeholder = 'Type your answer...';
+            
+            const submitBtn = document.createElement('button');
+            submitBtn.innerText = 'Submit';
+            submitBtn.className = 'btn';
+            submitBtn.id = 'submit-blank-btn';
+
+            submitBtn.addEventListener('click', () => {
+                const userAnswer = input.value.trim().toLowerCase();
+                const correctAnswer = question.correct_answer.toLowerCase();
+                handleAnswer(userAnswer === correctAnswer, submitBtn);
+                input.disabled = true;
+            });
+            
+            container.appendChild(input);
+            container.appendChild(submitBtn);
+            qBody.appendChild(container);
+        }
+
+        function handleAnswer(isCorrect, element) {
+            if (isAnswered) return;
+            isAnswered = true;
+            
+            const currentQuestion = allQuestions[currentQuestionIndex];
+
+            if (isCorrect) {
+                const level = currentQuestion.level;
+                scores[level]++;
+                feedbackEl.textContent = "Correct!";
+                feedbackEl.className = 'correct';
+            } else {
+                feedbackEl.textContent = `Incorrect. The correct answer is: ${currentQuestion.correct_answer}`;
+                feedbackEl.className = 'incorrect';
+            }
+            
+            if (element && element.classList.contains('answer-btn')) {
+                // Sadece çoktan seçmeli için, doğru cevabı vurgula
+                const allButtons = qBody.querySelectorAll('.answer-btn');
+                allButtons.forEach(btn => {
+                    if (btn.innerText === currentQuestion.correct_answer) {
+                        btn.style.borderColor = 'var(--success-color)';
+                        btn.style.backgroundColor = 'var(--success-color)';
+                        btn.style.color = 'var(--light-text)';
+                    }
+                    if (btn !== element) {
+                        btn.disabled = true;
+                    }
+                });
+                element.classList.add('selected');
+            } else if (element && element.id === 'submit-blank-btn') {
+                element.disabled = true;
+            }
+
+            nextBtn.classList.remove('hidden');
+        }
+
+        function updateProgressBar() {
+            const progress = ((currentQuestionIndex) / allQuestions.length) * 100;
+            progressBar.style.width = `${progress}%`;
+        }
+        
+        function resetState() {
+            while (qBody.firstChild) {
+                qBody.removeChild(qBody.firstChild);
+            }
+            nextBtn.classList.add('hidden');
+            feedbackEl.textContent = '';
+            isAnswered = false;
+        }
+
+        function handleNextQuestion() {
+            currentQuestionIndex++;
+            if (currentQuestionIndex < allQuestions.length) {
+                showQuestion();
+            } else {
+                showResult();
+            }
+        }
+        
+        function showResult() {
+            updateProgressBar();
+            quizScreen.classList.add('hidden');
+            resultScreen.classList.remove('hidden');
+
+            let finalLevel = "A1";
+            let maxScore = 0;
+            const levelOrder = ["C2", "C1", "B2", "B1", "A2", "A1"];
+            
+            for (const level of levelOrder) {
+                if (scores[level] > 0) {
+                    finalLevel = level;
+                    break;
+                }
+            }
+            
+            const result = levelDescriptions[finalLevel];
+            resultLevelEl.innerText = result.title;
+            resultDescriptionEl.innerText = result.description;
+        }
+        
+        function restartTest() {
+            resultScreen.classList.add('hidden');
+            startScreen.classList.remove('hidden');
+            progressBar.style.width = `0%`;
+        }
+
+        // --- EVENT LISTENERS ---
+        startBtn.addEventListener('click', startTest);
+        nextBtn.addEventListener('click', handleNextQuestion);
+        restartBtn.addEventListener('click', restartTest);
+    </script>
+</body>
+</html>
